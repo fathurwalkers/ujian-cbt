@@ -33,9 +33,7 @@
                   <th style="width: 10px;">No</th>
                   <th>Nama Peserta</th>
                   <th>NIP</th>
-                  <th>NIK</th>
                   <th>Golongan</th>
-                  <th>No. Telepon</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -49,9 +47,7 @@
                     </a>
                   </td>
                   <td>{{ $row->peserta_nip }}</td>
-                  <td>{{ $row->peserta_nik }}</td>
                   <td>{{ $row->peserta_golongan }}</td>
-                  <td>{{ $row->peserta_telepon }}</td>
                   <td>
                     <center>
                       <a class="btn btn-warning btn-xs" title="Edit Data"

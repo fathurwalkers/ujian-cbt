@@ -37,7 +37,7 @@
 
                                 <p>Detail Soal</p>
 
-                                <img src="{{ asset('storage/'.$banksoal->soal_file) }}" alt=""
+                                <img src="{{ asset('storage/app/'.$banksoal->soal_file) }}" alt=""
                                     class="d-flex align-content-center" width="400px">
                                 <p>{!! $banksoal->soal_teks !!}</p>
 

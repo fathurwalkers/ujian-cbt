@@ -10,13 +10,10 @@ class Peserta extends Model
 
     protected $fillable = [
         'peserta_nama',
-        'peserta_nik',
         'peserta_nip',
         'peserta_pangkat',
-        'peserta_jabatan',
         'peserta_golongan',
-        'peserta_telepon',
-        'peserta_jeniskelamin',
+        'peserta_jabatan',
         'created_at',
         'updated_at'
     ];

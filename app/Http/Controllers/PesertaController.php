@@ -24,13 +24,10 @@ class PesertaController extends Controller
     {
         $data_peserta = Peserta::create([
             'peserta_nama' => $request->peserta_nama,
-            'peserta_nik' => $request->peserta_nik,
             'peserta_nip' => $request->peserta_nip,
             'peserta_pangkat' => $request->peserta_pangkat,
-            'peserta_jabatan' => $request->peserta_jabatan,
             'peserta_golongan' => $request->peserta_golongan,
-            'peserta_telepon' => $request->peserta_telepon,
-            'peserta_jeniskelamin' => $request->peserta_jeniskelamin,
+            'peserta_jabatan' => $request->peserta_jabatan,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -58,13 +55,10 @@ class PesertaController extends Controller
     {
         $peserta_update = Peserta::where('id', $idpeserta)->first()->update([
             'peserta_nama' => $request->peserta_nama,
-            'peserta_nik' => $request->peserta_nik,
             'peserta_nip' => $request->peserta_nip,
             'peserta_pangkat' => $request->peserta_pangkat,
-            'peserta_jabatan' => $request->peserta_jabatan,
             'peserta_golongan' => $request->peserta_golongan,
-            'peserta_telepon' => $request->peserta_telepon,
-            'peserta_jeniskelamin' => $request->peserta_jeniskelamin,
+            'peserta_jabatan' => $request->peserta_jabatan,
             'updated_at' => now()
         ]);
         return redirect()->route('master-peserta');

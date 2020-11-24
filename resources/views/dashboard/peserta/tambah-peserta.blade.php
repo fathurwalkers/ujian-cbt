@@ -40,15 +40,6 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="nik" class="col-sm-3 control-label">NIK</label>
-
-                    <div class="col-sm-9">
-                      <input name="peserta_nik" type="text" class="form-control" id="nik" placeholder="0"
-                        onkeypress="return event.charCode >= 48 && event.charCode <=57">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
                     <label for="nip" class="col-sm-3 control-label">NIP</label>
 
                     <div class="col-sm-9">
@@ -66,15 +57,6 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="jabatan" class="col-sm-3 control-label">Jabatan</label>
-
-                    <div class="col-sm-9">
-                      <textarea name="peserta_jabatan" class="form-control" rows="3" id="jabatan"
-                        placeholder="Enter ..."></textarea>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
                     <label for="golongan" class="col-sm-3 control-label">Golongan</label>
 
                     <div class="col-sm-9">
@@ -82,24 +64,13 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label for="telepon" class="col-sm-3 control-label">Telepon</label>
-
-                    <div class="col-sm-9">
-                      <input name="peserta_telepon" type="text" class="form-control" id="telepon" placeholder="0"
-                        onkeypress="return event.charCode >= 48 && event.charCode <=57">
-                    </div>
-                  </div>
 
                   <div class="form-group">
-                    <label for="peserta_jeniskelamin" class="col-sm-3 control-label">Jenis Kelamin</label>
+                    <label for="jabatan" class="col-sm-3 control-label">Jabatan</label>
 
                     <div class="col-sm-9">
-                      <select name="peserta_jeniskelamin" class="form-control select2" style="width: 100%;">
-                        <option selected="selected" disabled>--Pilih--</option>
-                        <option>Laki-Laki</option>
-                        <option>Perempuan</option>
-                      </select>
+                      <textarea name="peserta_jabatan" class="form-control" rows="3" id="jabatan"
+                        placeholder="Enter ..."></textarea>
                     </div>
                   </div>
 

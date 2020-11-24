@@ -18,11 +18,10 @@
     <div class="callout callout-light">
       <h4>Nama : {{ $peserta_detail->peserta_nama }}</h4>
 
-      <p>Jabatan : {{ $peserta_detail->peserta_jabatan }}</p>
       <p>NIP : {{ $peserta_detail->peserta_nip }}</p>
-      <p>NIK : {{ $peserta_detail->peserta_nik }}</p>
       <p>Pangkat : {{ $peserta_detail->peserta_pangkat }}</p>
-      <p>No. Telepon : {{ $peserta_detail->peserta_telepon }}</p>
+      <p>Golongan : {{ $peserta_detail->peserta_golongan }}</p>
+      <p>Jabatan : {{ $peserta_detail->peserta_jabatan }}</p>
     </div>
 
   </section>
