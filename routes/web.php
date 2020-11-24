@@ -11,6 +11,7 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/bank-soal', 'BanksoalController@banksoal')->name('bank-soal');
     Route::get('/tambah-bank-soal', 'BanksoalController@tambah_banksoal')->name('tambah-bank-soal');
     Route::post('/tambah-bank-soal', 'BanksoalController@post_tambah_banksoal')->name('post-tambah-bank-soal');
+    Route::get('/detail-bank-soal/{idsoal}', 'BanksoalController@detail_banksoal')->name('detail-bank-soal');
 
     // Master Assesor 
     Route::get('/master-assesor', 'DashboardController@master_assesor')->name('master-assesor');

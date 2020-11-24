@@ -41,13 +41,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($jadwalujian as $row)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Ujian</td>
-                                    <td>100</td>
-                                    <td>28 Nov 2020</td>
-                                    <td>10:30 - 12:00 WITA</td>
-                                    <td>Urut</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $row->ujian_nama }}</td>
+                                    <td>{{ $row->ujian_jumlahsoal }}</td>
+                                    <td>{{ $row->ujian_tanggal }}</td>
+                                    <td>{{ $row->ujian_estimasiwaktu }}</td>
+                                    <td>{{ $row->ujian_jenissoal }}</td>
                                     <td>
                                         <center>
                                             <a class="btn btn-warning btn-xs" title="Edit Data"
@@ -58,6 +59,7 @@
                                         </center>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

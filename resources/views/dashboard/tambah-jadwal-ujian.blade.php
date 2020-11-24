@@ -36,7 +36,7 @@
                                         <label for="nama_ujian" class="col-sm-3 control-label">Nama Ujian</label>
 
                                         <div class="col-sm-9">
-                                            <input name="nama_ujian" type="text" class="form-control" id="nama_ujian">
+                                            <input name="ujian_nama" type="text" class="form-control" id="nama_ujian">
                                         </div>
                                     </div>
 
@@ -44,8 +44,8 @@
                                         <label for="jumlah_soal" class="col-sm-3 control-label">Jumlah Soal</label>
 
                                         <div class="col-sm-9">
-                                            <input name="jumlah_soal" type="text" class="form-control" id="jumlah_soal"
-                                                placeholder="0"
+                                            <input name="ujian_jumlahsoal" type="text" class="form-control"
+                                                id="jumlah_soal" placeholder="0"
                                                 onkeypress="return event.charCode >= 48 && event.charCode <=57">
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
 
                                         <div class="col-sm-9">
                                             <div class="input-group date">
-                                                <input name="tanggal_ujian" type="date" class="form-control pull-right"
+                                                <input name="ujian_tanggal" type="date" class="form-control pull-right"
                                                     id="datepicker">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
@@ -70,7 +70,7 @@
 
                                         <div class="col-sm-9">
                                             <div class="input-group">
-                                                <input name="estimasi_waktu" type="text" class="form-control"
+                                                <input name="ujian_estimasiwaktu" type="text" class="form-control"
                                                     id="estimasi_waktu" placeholder="0"
                                                     onkeypress="return event.charCode >= 48 && event.charCode <=57">
 
@@ -82,12 +82,12 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="waktu_mulai_ujian" class="col-sm-3 control-label">Waktu Mulai
+                                        <label for="ujian_waktumulai" class="col-sm-3 control-label">Waktu Mulai
                                             Ujian</label>
 
                                         <div class="col-sm-9">
                                             <div class="input-group">
-                                                <input name="waktu_mulai_ujian" type="text"
+                                                <input name="ujian_waktumulai" type="time"
                                                     class="form-control timepicker" id="waktu_mulai_ujian">
 
                                                 <div class="input-group-addon">
@@ -103,7 +103,7 @@
 
                                         <div class="col-sm-9">
                                             <div class="input-group">
-                                                <input name="waktu_selesai_ujian" type="text"
+                                                <input name="ujian_waktuselesai" type="time"
                                                     class="form-control timepicker" id="waktu_selesai_ujian">
 
                                                 <div class="input-group-addon">
@@ -117,7 +117,8 @@
                                         <label for="jenis_soal" class="col-sm-3 control-label">Jenis Soal</label>
 
                                         <div class="col-sm-9">
-                                            <select name="jenis_soal" class="form-control select2" style="width: 100%;">
+                                            <select name="ujian_jenissoal" class="form-control select2"
+                                                style="width: 100%;">
                                                 <option selected="selected" disabled>--Pilih--</option>
                                                 <option>Acak</option>
                                                 <option>Urut</option>
@@ -142,4 +143,28 @@
             </div>
         </div>
 
-    </s
+    </section>
+</div>
+<!-- End Konten -->
+@endsection
+
+@section('after-script')
+
+<script>
+    $(function() {
+      //Initialize Select2 Elements
+      $('.select2').select2()
+
+      //Date picker
+      $('#datepicker').datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true
+      })
+
+      //Timepicker
+      $('.timepicker').timepicker({
+        showInputs: false
+      })
+    })
+</script>
+@endsection

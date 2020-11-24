@@ -43,4 +43,12 @@ class BanksoalController extends Controller
         $bank_soal->save();
         return redirect()->route('bank-soal');
     }
+
+    public function detail_banksoal($idsoal)
+    {
+        $banksoal = Banksoal::where('id', $idsoal)->first();
+        return view('dashboard.banksoal.detail-soal', [
+            'banksoal' => $banksoal
+        ]);
+    }
 }
