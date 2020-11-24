@@ -26,7 +26,12 @@ Route::prefix('/dashboard')->group(function () {
     Route::post('/delete-peserta/{idpeserta}', 'PesertaController@delete_peserta')->name('delete-peserta');
 
     // Master Nomor Ujian 
-    Route::get('/master-nomor-ujian', 'DashboardController@master_nomorujian')->name('master-nomor-ujian');
+    Route::get('/master-nomor-ujian', 'UjianController@master_nomorujian')->name('master-nomor-ujian');
+    Route::get('/tambah-nomor-ujian', 'UjianController@tambah_nomorujian')->name('tambah-nomor-ujian');
+    Route::post('/post-nomor-ujian', 'UjianController@post_nomorujian')->name('post-nomor-ujian');
+    Route::get('/edit-nomor-ujian/{idnomorujian}', 'UjianController@edit_nomorujian')->name('edit-nomor-ujian');
+    Route::post('/update-nomor-ujian/{idnomorujian}', 'UjianController@update_nomorujian')->name('update-nomor-ujian');
+    Route::get('/delete-nomor-ujian/{idnomorujian}', 'UjianController@delete_nomorujian')->name('delete-nomor-ujian');
 
     // Jadwal Ujian 
     Route::get('/jadwal-ujian', 'UjianController@index_jadwalujian')->name('jadwal-ujian');

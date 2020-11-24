@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Banksoal;
 use App\Jadwalujian;
+use App\Nomorujian;
 use Illuminate\Http\Request;
 
 class UjianController extends Controller
@@ -39,5 +40,52 @@ class UjianController extends Controller
     public function laporanujian()
     {
         return view('dashboard.laporan-ujian');
+    }
+
+    public function master_nomorujian()
+    {
+        $nomorujian = Nomorujian::all();
+        return view('dashboard.nomorujian.master-nomor-ujian', [
+            'nomorujian' => $nomorujian
+        ]);
+    }
+
+    public function tambah_nomorujian()
+    {
+        return view('dashboard.nomorujian.tambah-nomor-ujian');
+    }
+
+    public function post_nomorujian(Request $request)
+    {
+        $nomorujian = Nomorujian::create([
+            'nomorujian' => $request->nomorujian,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        return redirect()->route('master-nomor-ujian');
+    }
+
+    public function edit_nomorujian($idnomorujian)
+    {
+        $nomorujian = Nomorujian::where('id', $idnomorujian)->first();
+        return view('dashboard.nomorujian.edit-nomor-ujian', [
+            'nomorujian' => $nomorujian
+        ]);
+    }
+
+    public function update_nomorujian(Request $request, $idnomorujian)
+    {
+        $nomorujian = Nomorujian::where('id', $idnomorujian)->first()->update([
+            'nomorujian' => $request->nomorujian,
+            'updated_at' => now()
+        ]);
+        return redirect()->route('master-nomor-ujian');
+    }
+
+    public function delete_nomorujian($idnomorujian)
+    {
+        $delete_nomorujian = Nomorujian::where('id', $idnomorujian)->first();
+        $delete_nomorujian->forceDelete();
+        return redirect()->route('master-nomor-ujian');
     }
 }

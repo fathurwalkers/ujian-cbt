@@ -54,9 +54,4 @@ class DashboardController extends Controller
     {
         return view('dashboard.assesor.master-assesor');
     }
-
-    public function master_nomorujian()
-    {
-        return view('dashboard.nomorujian.master-nomor-ujian');
-    }
 }
