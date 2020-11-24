@@ -31,11 +31,14 @@
                     </div>
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-sm-8 col-sm-offset-2">
+                            <div class="col-sm-8 col-sm-offset-2 justify-content-center">
 
                                 <h3 class="text-center">Soal</h3>
 
                                 <p>Detail Soal</p>
+
+                                <img src="{{ asset('storage/'.$banksoal->soal_file) }}" alt=""
+                                    class="d-flex align-content-center" width="400px">
                                 <p>{!! $banksoal->soal_teks !!}</p>
 
                                 <hr class="my-4">
@@ -43,22 +46,32 @@
                                 <h3 class="text-center">Jawaban</h3>
 
                                 <h4>Pilihan A </h4>
+                                <img src="{{ asset($banksoal->soal_file1) }}" alt="" class="d-flex align-content-center"
+                                    width="250px">
                                 <p>{!! $banksoal->soal_opsi1 !!}</p>
 
 
                                 <h4>Pilihan B </h4>
+                                <img src="{{ asset($banksoal->soal_file2) }}" alt="" class="d-flex align-content-center"
+                                    width="250px">
                                 <p>{!! $banksoal->soal_opsi2 !!} </p>
 
 
                                 <h4>Pilihan C <i class='fa fa-check-circle text-success'></i></h4>
+                                <img src="{{ asset($banksoal->soal_file3) }}" alt="" class="d-flex align-content-center"
+                                    width="250px">
                                 <p>{!! $banksoal->soal_opsi3 !!} (jika jawaban benar maka muncul centang hijau)</p>
 
 
                                 <h4>Pilihan D </h4>
+                                <img src="{{ asset($banksoal->soal_file4) }}" alt="" class="d-flex align-content-center"
+                                    width="250px">
                                 <p>{!! $banksoal->soal_opsi4 !!} </p>
 
 
                                 <h4>Pilihan E </h4>
+                                <img src="{{ asset($banksoal->soal_file5) }}" alt="" class="d-flex align-content-center"
+                                    width="250px">
                                 <p>{!! $banksoal->soal_opsi5 !!} </p>
 
 
