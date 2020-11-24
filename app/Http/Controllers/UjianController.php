@@ -35,4 +35,9 @@ class UjianController extends Controller
         $jadwalujian->save();
         return redirect()->route('jadwal-ujian');
     }
+
+    public function laporanujian()
+    {
+        return view('dashboard.laporan-ujian');
+    }
 }

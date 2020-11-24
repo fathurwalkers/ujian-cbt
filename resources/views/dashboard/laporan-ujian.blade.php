@@ -32,7 +32,7 @@
                                         <label for="Nama Ujian" class="col-sm-3 control-label">Nama Ujian</label>
 
                                         <div class="col-sm-9">
-                                            <select class="form-control select2" style="width: 100%;" name="nama_ujian">
+                                            <select class="form-control select2" style="width: 100%;" name="ujian">
                                                 <option selected="selected">Alabama</option>
                                                 <option>Alaska</option>
                                                 <option>California</option>

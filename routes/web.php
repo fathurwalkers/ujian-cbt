@@ -21,6 +21,9 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/tambah-peserta', 'PesertaController@tambah_peserta')->name('tambah-peserta');
     Route::post('/tambah-peserta', 'PesertaController@post_tambah_peserta')->name('post-tambah-peserta');
     Route::get('/detail-peserta/{idpeserta}', 'PesertaController@detail_peserta')->name('detail-peserta');
+    Route::get('/edit-peserta/{idpeserta}', 'PesertaController@edit_peserta')->name('edit-peserta');
+    Route::post('/update-peserta/{idpeserta}', 'PesertaController@update_peserta')->name('update-peserta');
+    Route::post('/delete-peserta/{idpeserta}', 'PesertaController@delete_peserta')->name('delete-peserta');
 
     // Master Nomor Ujian 
     Route::get('/master-nomor-ujian', 'DashboardController@master_nomorujian')->name('master-nomor-ujian');
@@ -29,6 +32,9 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/jadwal-ujian', 'UjianController@index_jadwalujian')->name('jadwal-ujian');
     Route::get('/tambah-jadwal-ujian', 'UjianController@tambah_jadwalujian')->name('tambah-jadwal-ujian');
     Route::post('/tambah-jadwal-ujian', 'UjianController@posttambah_jadwalujian')->name('post-tambah-jadwalujian');
+
+    // LAPORAN UJIAN 
+    Route::get('/laporan-ujian', 'UjianController@laporanujian')->name('laporan-ujian');
 });
 
 // Login & Logout Route 

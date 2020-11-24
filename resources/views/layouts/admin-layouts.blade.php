@@ -147,7 +147,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="laporan_ujian.php"><i class="fa fa-circle-o"></i> Laporan Ujian</a></li>
+              <li><a href="{{ route('laporan-ujian') }}"><i class="fa fa-circle-o"></i> Laporan Ujian</a></li>
               <li><a href="laporan_history.php"><i class="fa fa-circle-o"></i> Laporan History Ujian</a></li>
             </ul>
           </li>
