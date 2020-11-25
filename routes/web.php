@@ -57,6 +57,6 @@ Route::post('/logout', 'DashboardController@logout_dashboard')->name('logout-das
 // Proses Ujian 
 Route::get('/', 'UjianController@index_prosesujian')->name('index-proses-ujian');
 Route::post('/', 'UjianController@postindex_prosesujian')->name('post-index-proses-ujian');
-Route::get('/persiapan', 'UjianController@persiapan_prosesujian')->name('persiapan-proses-ujian');
+Route::get('/persiapan/{peserta_id}', 'UjianController@persiapan_prosesujian')->name('persiapan-proses-ujian');
 Route::get('/ajax-timestamp', 'UjianController@ajax_timestamp')->name('ajax-timestamp');
 Route::get('/ajax-datestamp', 'UjianController@ajax_datestamp')->name('ajax-datestamp');

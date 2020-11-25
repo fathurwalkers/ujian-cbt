@@ -36,7 +36,8 @@ class DashboardController extends Controller
 
     public function logout_dashboard(Request $request)
     {
-        $request->session()->forget('status_login');
+        // $request->session()->forget('status_login');
+        $request->session()->flush();
         return redirect('/login');
     }
 

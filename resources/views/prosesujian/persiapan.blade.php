@@ -32,27 +32,27 @@
                                     <table class="table table-bordered">
                                         <tr>
                                             <th style="width: 13rem;">Nomor Ujian</th>
-                                            <td>CBT-001</td>
+                                            <td>{{ $nomorujian->nomorujian }}</td>
                                         </tr>
                                         <tr>
                                             <th style="width: 13rem;">Nama</th>
-                                            <td>SURYA PALO</td>
+                                            <td>{{ $peserta->peserta_nama }}</td>
                                         </tr>
                                         <tr>
                                             <th style="width: 13rem;">NIP</th>
-                                            <td>82347823748723</td>
+                                            <td>{{ $peserta->peserta_nip }}</td>
                                         </tr>
                                         <tr>
                                             <th style="width: 13rem;">Pangkat</th>
-                                            <td>Pembina</td>
+                                            <td>{{ $peserta->peserta_pangkat }}</td>
                                         </tr>
                                         <tr>
                                             <th style="width: 13rem;">Golongan</th>
-                                            <td>IV/A</td>
+                                            <td>{{ $peserta->peserta_golongan }}</td>
                                         </tr>
                                         <tr>
                                             <th style="width: 13rem;">Jabatan</th>
-                                            <td>Sekretaris Satuan Polisi Pamong Praja Kabupaten Buton Selatan</td>
+                                            <td>{{ $peserta->peserta_jabatan }}</td>
                                         </tr>
                                     </table>
                                 </div>

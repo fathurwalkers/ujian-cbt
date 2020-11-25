@@ -103,11 +103,13 @@ class UjianController extends Controller
 
     public function postindex_prosesujian(Request $request)
     {
-        $nomorujian_match = Nomorujian::where('nomorujian', $request->nomorujian)->firstOrFail();
-        $peserta_match = Peserta::where('peserta_nip', $request->peserta_nip)->firstOrFail();
+        $nomorujian_match = Nomorujian::where('nomorujian', $request->nomorujian)->first();
+        $peserta_match = Peserta::where('peserta_nip', $request->peserta_nip)->first();
+        $peserta_ujian_match = PesertaUjian::where('nomorujian_id', $nomorujian_match->id && 'peserta_id', $peserta_match->id)->first();
 
-        // $session_nomorujian = session(['nomorujian' => $nomorujian]);
-        // $session_peserta = session(['peserta' => $peserta]);
+        if ($peserta_ujian_match) {
+            return redirect('/');
+        }
 
         if ($nomorujian_match) {
             if ($peserta_match) {
@@ -119,27 +121,31 @@ class UjianController extends Controller
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);
-                $pesertaujian->save();
-                return redirect()->route('persiapan-proses-ujian');
+                $pesertaujian->pesertaujian_peserta()->associate($peserta_match->id);
+                $pesertaujian->pesertaujian_nomorujian()->associate($nomorujian_match->id);
+                // $pesertaujian->$pesertaujian->save();
+                // $session_nomorujian = session(['nomorujian' => $nomorujian_match]);
+                // $session_peserta = session(['peserta' => $peserta_match]);
+                return redirect()->route('persiapan-proses-ujian', [
+                    'peserta_id' => $peserta_match->id
+                ]);
             }
         }
-        // return redirect('/')->withInput();
-        // return abort(404);
-        return back()->withInput();
+        return back()->with('status_error', 'Nomor Ujian / NIP sudah dipakai atau tidak ada')->withInput();
     }
 
-    public function persiapan_prosesujian()
+    public function persiapan_prosesujian($peserta_id)
     {
-        return view('prosesujian.persiapan');
+        $peserta_ujian = PesertaUjian::where('peserta_id', $peserta_id)->first();
+        $peserta = Peserta::where('id', $peserta_id)->first();
+        $nomorujian = Nomorujian::where('id', $peserta_ujian->nomorujian_id)->first();
+        if ($peserta_ujian) {
+            return view('prosesujian.persiapan', [
+                'peserta_ujian' => $peserta_ujian,
+                'peserta' => $peserta,
+                'nomorujian' => $nomorujian
+            ]);
+        }
+        return back();
     }
-
-    // public function ajax_timestamp()
-    // {
-    //     return view('dashboard.prosesujian.ajax-timestamp');
-    // }
-
-    // public function ajax_datestamp()
-    // {
-    //     return view('dashboard.prosesujian.ajax-datestamp');
-    // }
 }

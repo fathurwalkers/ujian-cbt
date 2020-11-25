@@ -28,6 +28,10 @@
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
 
+                                    @error('error')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+
                                     <form class="form-horizontal" action="{{ route('post-index-proses-ujian') }}"
                                         method="POST">
                                         @csrf
