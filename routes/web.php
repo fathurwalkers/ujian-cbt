@@ -48,6 +48,7 @@ Route::prefix('/dashboard')->group(function () {
 
     // RELASI NOMORUJIAN DAN PESERTA 
     Route::get('/relasi-nomorujian-peserta', 'UjianController@relasi_nomorujian_peserta')->name('relasi-nomorujian-peserta');
+    Route::get('/delete-peserta-ujian/{idpesertaujian}', 'UjianController@delete_nomorujian_peserta')->name('delete-peserta-ujian');
 });
 
 // Login & Logout Route 

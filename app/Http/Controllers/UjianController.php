@@ -59,6 +59,10 @@ class UjianController extends Controller
 
     public function post_nomorujian(Request $request)
     {
+        $cek_nomorujian = Nomorujian::where('nomorujian', $request->nomorujian)->first();
+        if ($cek_nomorujian) {
+            return back();
+        }
         $nomorujian = Nomorujian::create([
             'nomorujian' => $request->nomorujian,
             'created_at' => now(),
@@ -156,5 +160,14 @@ class UjianController extends Controller
         return view('dashboard.relasi-nomorujian-peserta.relasi-nomor-peserta', [
             'peserta_ujian' => $peserta_ujian
         ]);
+    }
+
+    public function delete_nomorujian_peserta($idpesertaujian)
+    {
+        $peserta_ujian = PesertaUjian::where('id', $idpesertaujian)->first();
+        $peserta_ujian->peserta()->dissociate();
+        $peserta_ujian->nomorujian()->dissociate();
+        $peserta_ujian->forceDelete();
+        return redirect()->route('relasi-nomorujian-peserta');
     }
 }

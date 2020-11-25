@@ -49,8 +49,9 @@
                                     <td>{{ date('d-M-Y', strtotime($row->waktu_masuk)) }} |
                                         {{ date('h:i A', strtotime($row->waktu_masuk)) }}</td>
                                     <td>
-                                        <a class="btn btn-danger btn-xs" title="Block Data" href="#"><span
-                                                class="glyphicon glyphicon-ban-circle"></span></a>
+                                        <a class="btn btn-danger btn-xs" title="Block Data"
+                                            href="{{ route('delete-peserta-ujian', $row->id) }}"><span
+                                                class="glyphicon glyphicon-ban-circle"></span>&nbsp; Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach

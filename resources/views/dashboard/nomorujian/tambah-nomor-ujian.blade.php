@@ -21,7 +21,7 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Tambah Data</h3>
-                        <a href="../master_nomor_ujian.php" class="pull-right btn btn-warning btn-sm">
+                        <a href="{{ route('master-nomor-ujian') }}" class="pull-right btn btn-warning btn-sm">
                             <i class="fa fa-arrow-left"></i> Batal
                         </a>
                     </div>
