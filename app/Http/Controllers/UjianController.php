@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Banksoal;
 use App\Jadwalujian;
 use App\Nomorujian;
+use App\Peserta;
+use App\PesertaUjian;
 use Illuminate\Http\Request;
 
 class UjianController extends Controller
@@ -88,4 +90,56 @@ class UjianController extends Controller
         $delete_nomorujian->forceDelete();
         return redirect()->route('master-nomor-ujian');
     }
+
+    public function index_prosesujian()
+    {
+        $nomorujian = Nomorujian::all();
+        $peserta = Peserta::all();
+        return view('prosesujian.index', [
+            'nomorujian' => $nomorujian,
+            'peserta' => $peserta
+        ]);
+    }
+
+    public function postindex_prosesujian(Request $request)
+    {
+        $nomorujian_match = Nomorujian::where('nomorujian', $request->nomorujian)->firstOrFail();
+        $peserta_match = Peserta::where('peserta_nip', $request->peserta_nip)->firstOrFail();
+
+        // $session_nomorujian = session(['nomorujian' => $nomorujian]);
+        // $session_peserta = session(['peserta' => $peserta]);
+
+        if ($nomorujian_match) {
+            if ($peserta_match) {
+                $pesertaujian = PesertaUjian::create([
+                    'nomorujian_id' => $nomorujian_match->id,
+                    'peserta_id' => $peserta_match->id,
+                    'tanggal_masuk' => now(),
+                    'waktu_masuk' => now(),
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+                $pesertaujian->save();
+                return redirect()->route('persiapan-proses-ujian');
+            }
+        }
+        // return redirect('/')->withInput();
+        // return abort(404);
+        return back()->withInput();
+    }
+
+    public function persiapan_prosesujian()
+    {
+        return view('prosesujian.persiapan');
+    }
+
+    // public function ajax_timestamp()
+    // {
+    //     return view('dashboard.prosesujian.ajax-timestamp');
+    // }
+
+    // public function ajax_datestamp()
+    // {
+    //     return view('dashboard.prosesujian.ajax-datestamp');
+    // }
 }

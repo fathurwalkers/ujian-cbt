@@ -54,7 +54,9 @@ Route::get('/register', 'DashboardController@register')->name('register-dashboar
 Route::post('/register', 'DashboardController@postregister')->name('post-register-dashboard');
 Route::post('/logout', 'DashboardController@logout_dashboard')->name('logout-dashboard');
 
-
-// Route::prefix('/ujian')->group(function () {
-//     Route::get('/test/{namaujian}/{nomorujian}', 'SoalController@index');
-// });
+// Proses Ujian 
+Route::get('/', 'UjianController@index_prosesujian')->name('index-proses-ujian');
+Route::post('/', 'UjianController@postindex_prosesujian')->name('post-index-proses-ujian');
+Route::get('/persiapan', 'UjianController@persiapan_prosesujian')->name('persiapan-proses-ujian');
+Route::get('/ajax-timestamp', 'UjianController@ajax_timestamp')->name('ajax-timestamp');
+Route::get('/ajax-datestamp', 'UjianController@ajax_datestamp')->name('ajax-datestamp');

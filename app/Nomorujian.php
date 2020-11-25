@@ -11,4 +11,9 @@ class Nomorujian extends Model
     public $timestamps = false;
 
     protected $fillable = ['nomorujian'];
+
+    public function nomorujian_pesertaujian()
+    {
+        return $this->hasOne('App\PesertaUjian');
+    }
 }

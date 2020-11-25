@@ -15,4 +15,14 @@ class PesertaUjian extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function pesertaujian_peserta()
+    {
+        return $this->belongsTo('App\Peserta');
+    }
+
+    public function pesertaujian_nomorujian()
+    {
+        return $this->belongsTo('App\Nomorujian');
+    }
 }
