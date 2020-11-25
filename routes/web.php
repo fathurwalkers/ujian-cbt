@@ -66,4 +66,5 @@ Route::get('/ajax-timestamp', 'UjianController@ajax_timestamp')->name('ajax-time
 Route::get('/ajax-datestamp', 'UjianController@ajax_datestamp')->name('ajax-datestamp');
 
 // Soal 
-Route::get('/soal', 'UjianController@soal_index')->name('soal-index');
+Route::post('/soal', 'UjianController@soal_index')->name('soal-index');
+Route::post('/cek-jawaban-soal', 'UjianController@cekjawabansoal')->name('cek-jawaban-soal');

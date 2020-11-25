@@ -62,8 +62,11 @@
                                         <p>Silahkan menekan tombol "MULAI" berwarna hijau ini untuk memulai ujian.</p>
                                     </div>
 
-                                    <form class="form-horizontal">
-
+                                    <form class="form-horizontal" action="{{ route('soal-index') }}" method="POST">
+                                        @csrf
+                                        <input name="peserta_id" type="hidden" value="{{ $peserta->id }}">
+                                        <input name="nomorujian_id" type="hidden" value="{{ $nomorujian->id }}">
+                                        <input name="pesertaujian_id" type="hidden" value="{{ $peserta_ujian->id }}">
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <button type="submit" name="lanjut"

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Banksoal;
+use App\HasilUjian;
 use App\Jadwalujian;
 use App\Nomorujian;
 use App\Peserta;
 use App\PesertaUjian;
+use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Http\Request;
 
 class UjianController extends Controller
@@ -134,26 +136,6 @@ class UjianController extends Controller
         }
     }
 
-    public function persiapan_prosesujian($peserta_id)
-    {
-        $peserta_ujian = PesertaUjian::where('peserta_id', $peserta_id)->first();
-        $peserta = Peserta::where('id', $peserta_id)->first();
-        $nomorujian = Nomorujian::where('id', $peserta_ujian->nomorujian_id)->first();
-        if ($peserta_ujian) {
-            return view('prosesujian.persiapan', [
-                'peserta_ujian' => $peserta_ujian,
-                'peserta' => $peserta,
-                'nomorujian' => $nomorujian
-            ]);
-        }
-        return back();
-    }
-
-    public function soal_index()
-    {
-        return view('prosesujian.soal');
-    }
-
     public function relasi_nomorujian_peserta()
     {
         $peserta_ujian = PesertaUjian::all();
@@ -169,5 +151,86 @@ class UjianController extends Controller
         $peserta_ujian->nomorujian()->dissociate();
         $peserta_ujian->forceDelete();
         return redirect()->route('relasi-nomorujian-peserta');
+    }
+
+    public function persiapan_prosesujian($peserta_id)
+    {
+        $peserta_ujian = PesertaUjian::where('peserta_id', $peserta_id)->first();
+        $peserta = Peserta::where('id', $peserta_id)->first();
+        $nomorujian = Nomorujian::where('id', $peserta_ujian->nomorujian_id)->first();
+        if ($peserta_ujian) {
+            return view('prosesujian.persiapan', [
+                'peserta_ujian' => $peserta_ujian,
+                'peserta' => $peserta,
+                'nomorujian' => $nomorujian
+            ]);
+        }
+        return back();
+    }
+
+    public function soal_index(Request $request)
+    {
+        $peserta_id = $request->peserta_id;
+        $nomorujian_id = $request->nomorujian_id;
+        $pesertaujian_id = $request->pesertaujian_id;
+
+        $peserta = Peserta::where('id', $peserta_id)->first();
+        $pesertaujian = PesertaUjian::where('id', $pesertaujian_id)->first();
+
+        $banksoal = Banksoal::all();
+        return view('prosesujian.soal', [
+            'banksoal' => $banksoal,
+            'peserta' => $peserta,
+            'pesertaujian' => $pesertaujian
+        ]);
+    }
+
+    public function cekjawabansoal(Request $request)
+    {
+        $peserta_id = $request->peserta_id;
+        $nomorujian_id = $request->nomorujian_id;
+        $pesertaujian_id = $request->pesertaujian_id;
+
+        $peserta = Peserta::where('id', $peserta_id)->first();
+        $pesertaujian = PesertaUjian::where('id', $pesertaujian_id)->first();
+        $banksoal = Banksoal::where('id', $request->banksoal_id)->first();
+
+        // $id_peserta = $peserta->id;
+        // $id_banksoal = $banksoal->id;
+        $id_jadwalujian = 1;
+        $skor = $banksoal->soal_bobot;
+        $soalopsi = count($request->soal_opsi);
+        // $banksoalid = count($request->banksoal_id);
+        // $banksoal_implode = implode(':', $request->banksoal_id);
+        // dd($soalopsi);
+        for ($x = 0; $x < $soalopsi; $x++) {
+            $hasil_ujian = HasilUjian::create([
+                'pesertaujian_id' => $pesertaujian->id,
+                'jadwalujian_id' => $id_jadwalujian,
+                'banksoal_id' => $request->soal_id . $x,
+                'hasil_isianjawaban' => $x,
+                'hasil_tanggalmulai' => now(),
+                'hasil_waktumulai' => now(),
+                'hasil_waktuselesai' => now(),
+                'hasil_skorujian' => $skor,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
+            // dump($hasil_ujian);
+            $hasil_ujian->save();
+        }
+        return redirect()->route('index-proses-ujian');
+
+        // 'pesertaujian_id',
+        // 'jadwalujian_id',
+        // 'banksoal_id',
+        // 'hasil_isianjawaban',
+        // 'hasil_tanggalmulai',
+        // 'hasil_waktumulai',
+        // 'hasil_waktuselesai',
+        // 'hasil_skorujian',
+        // 'created_at',
+        // 'updated_at'
     }
 }

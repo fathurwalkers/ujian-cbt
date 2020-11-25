@@ -27,82 +27,86 @@
         <section class="content">
 
             <div class="row">
-                <div class="col-xs-6">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title"><span class="badge bg-blue" style="font-size: 18px;">Soal
-                                    &nbsp;/&nbsp;No.<span id="soalke">1</span> </span></h3>
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                        class="fa fa-minus"></i>
-                                </button>
+
+                <form action="{{ route('cek-jawaban-soal') }}" method="POST">
+                    @csrf
+                    <input name="peserta_id" type="hidden" value="{{ $peserta->id }}">
+                    {{-- <input name="nomorujian_id" type="hidden" value="{{ $nomorujian->id }}"> --}}
+                    <input name="pesertaujian_id" type="hidden" value="{{ $pesertaujian->id }}">
+
+                    @foreach ($banksoal as $soal)
+                    {{-- <form action="" method="POST"> --}}
+                    {{-- <input name="banksoal_id[{{ $loop->iteration }}]" type="hidden" value="{{ $soal->id }}"> --}}
+
+
+                    <div class="col-xs-6">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"><span class="badge bg-blue" style="font-size: 18px;">Soal
+                                        &nbsp;/&nbsp;No.<span id="soalke">{{ $loop->iteration }}</span> </span></h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="box-body">
-                            <input type="hidden" name="id_soal_1" value="5"><input type="hidden" name="rg_1" id="rg_1"
-                                value="N">
-                            <div class="step" id="widget_1">
-                                <div class="text-center">
-                                    <div class="w-25"></div>
-                                </div>
-                                <p>(2000 x 3) : 4 x 0 = ...</p>
-                            </div>
-                            <div class="funkyradio">
-                                <div class="funkyradio-success" onclick="return simpan_sementara();">
-                                    <input type="radio" id="opsi_a_5" name="opsi_1" value="A">
-                                    <label for="opsi_a_5" style="padding: 0px 0 0px 50px; ">
-                                        <div class="huruf_opsi">a</div>
-                                        <p>
-                                            <p>NULL</p>
-                                        </p>
+                            <div class="box-body">
+                                <input type="hidden" name="soal_id" value="{{ $soal->id }}"><input type="hidden"
+                                    name="rg_1" id="rg_1" value="N">
+                                <div class="step" id="widget_1">
+                                    <div class="text-center">
                                         <div class="w-25"></div>
-                                    </label>
+                                    </div>
+                                    <p>{!! $soal->soal_teks !!}</p>
                                 </div>
-                                <div class="funkyradio-success" onclick="return simpan_sementara();">
-                                    <input type="radio" id="opsi_b_5" name="opsi_1" value="B">
-                                    <label for="opsi_b_5" style="padding: 0px 0 0px 50px; ">
-                                        <div class="huruf_opsi">b</div>
-                                        <p>
-                                            <p>NaN</p>
-                                        </p>
-                                        <div class="w-25"></div>
-                                    </label>
-                                </div>
-                                <div class="funkyradio-success" onclick="return simpan_sementara();">
-                                    <input type="radio" id="opsi_c_5" name="opsi_1" value="C">
-                                    <label for="opsi_c_5" style="padding: 0px 0 0px 50px; ">
-                                        <div class="huruf_opsi">c</div>
-                                        <p>
-                                            <p>0</p>
-                                        </p>
-                                        <div class="w-25"></div>
-                                    </label>
-                                </div>
-                                <div class="funkyradio-success" onclick="return simpan_sementara();">
-                                    <input type="radio" id="opsi_d_5" name="opsi_1" value="D">
-                                    <label for="opsi_d_5" style="padding: 0px 0 0px 50px; ">
-                                        <div class="huruf_opsi">d</div>
-                                        <p>
-                                            <p>1</p>
-                                        </p>
-                                        <div class="w-25"></div>
-                                    </label>
-                                </div>
-                                <div class="funkyradio-success" onclick="return simpan_sementara();">
-                                    <input type="radio" id="opsi_e_5" name="opsi_1" value="E">
-                                    <label for="opsi_e_5" style="padding: 0px 0 0px 50px; ">
-                                        <div class="huruf_opsi">e</div>
-                                        <p>
-                                            <p>-1</p>
-                                        </p>
-                                        <div class="w-25"></div>
-                                    </label>
-                                </div>
+                                <table border="0">
+                                    <tr>
+                                        <td style="width:2rem;">A.</td>
+                                        <td style="width:2rem;"><input type="radio"
+                                                name="soal_opsi[]{{ $loop->iteration }}"
+                                                value="{{ $soal->soal_opsi1 }}">
+                                        </td>
+                                        <td>{!! $soal->soal_opsi1 !!}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B.</td>
+                                        <td><input type="radio" name="soal_opsi[]{{ $loop->iteration }}"
+                                                value="{{ $soal->soal_opsi2 }}"></td>
+                                        <td>{!! $soal->soal_opsi2 !!}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>C.</td>
+                                        <td><input type="radio" name="soal_opsi[]{{ $loop->iteration }}"
+                                                value="{{ $soal->soal_opsi3 }}"></td>
+                                        <td>{!! $soal->soal_opsi3 !!}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D.</td>
+                                        <td><input type="radio" name="soal_opsi[]{{ $loop->iteration }}"
+                                                value="{{ $soal->soal_opsi4 }}"></td>
+                                        <td>{!! $soal->soal_opsi4 !!}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E.</td>
+                                        <td><input type="radio" name="soal_opsi[]{{ $loop->iteration }}"
+                                                value="{{ $soal->soal_opsi5 }}"></td>
+                                        <td>{!! $soal->soal_opsi5 !!}</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-6">
+
+
+
+                    @endforeach
+                    <button type="submit" class="btn btn-success my-2 py-4 bg-dark mx-auto">
+                        Selesaikan Ujian
+                    </button>
+                </form>
+
+
+                {{-- <div class="col-xs-6">
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title"><span class="badge bg-blue" style="font-size: 18px;">Soal
@@ -122,61 +126,37 @@
                                 </div>
                                 <p>(2000 x 3) : 4 x 0 = ...</p>
                             </div>
-                            <div class="funkyradio">
-                                <div class="funkyradio-success" onclick="return simpan_sementara();">
-                                    <input type="radio" id="opsi_a_5" name="opsi_1" value="A">
-                                    <label for="opsi_a_5" style="padding: 0px 0 0px 50px; ">
-                                        <div class="huruf_opsi">a</div>
-                                        <p>
-                                            <p>NULL</p>
-                                        </p>
-                                        <div class="w-25"></div>
-                                    </label>
-                                </div>
-                                <div class="funkyradio-success" onclick="return simpan_sementara();">
-                                    <input type="radio" id="opsi_b_5" name="opsi_1" value="B">
-                                    <label for="opsi_b_5" style="padding: 0px 0 0px 50px; ">
-                                        <div class="huruf_opsi">b</div>
-                                        <p>
-                                            <p>NaN</p>
-                                        </p>
-                                        <div class="w-25"></div>
-                                    </label>
-                                </div>
-                                <div class="funkyradio-success" onclick="return simpan_sementara();">
-                                    <input type="radio" id="opsi_c_5" name="opsi_1" value="C">
-                                    <label for="opsi_c_5" style="padding: 0px 0 0px 50px; ">
-                                        <div class="huruf_opsi">c</div>
-                                        <p>
-                                            <p>0</p>
-                                        </p>
-                                        <div class="w-25"></div>
-                                    </label>
-                                </div>
-                                <div class="funkyradio-success" onclick="return simpan_sementara();">
-                                    <input type="radio" id="opsi_d_5" name="opsi_1" value="D">
-                                    <label for="opsi_d_5" style="padding: 0px 0 0px 50px; ">
-                                        <div class="huruf_opsi">d</div>
-                                        <p>
-                                            <p>1</p>
-                                        </p>
-                                        <div class="w-25"></div>
-                                    </label>
-                                </div>
-                                <div class="funkyradio-success" onclick="return simpan_sementara();">
-                                    <input type="radio" id="opsi_e_5" name="opsi_1" value="E">
-                                    <label for="opsi_e_5" style="padding: 0px 0 0px 50px; ">
-                                        <div class="huruf_opsi">e</div>
-                                        <p>
-                                            <p>-1</p>
-                                        </p>
-                                        <div class="w-25"></div>
-                                    </label>
-                                </div>
-                            </div>
+                            <table border="0">
+                                <tr>
+                                    <td style="width:2rem;">A.</td>
+                                    <td style="width:2rem;"><input type="radio" name="pilihan2" value="A"></td>
+                                    <td>Isi Jawaban</td>
+                                </tr>
+                                <tr>
+                                    <td>B.</td>
+                                    <td><input type="radio" name="pilihan2" value="B"></td>
+                                    <td>Isi Jawaban</td>
+                                </tr>
+                                <tr>
+                                    <td>C.</td>
+                                    <td><input type="radio" name="pilihan2" value="C"></td>
+                                    <td>Isi Jawaban</td>
+                                </tr>
+                                <tr>
+                                    <td>D.</td>
+                                    <td><input type="radio" name="pilihan2" value="D"></td>
+                                    <td>Isi Jawaban</td>
+                                </tr>
+                                <tr>
+                                    <td>E.</td>
+                                    <td><input type="radio" name="pilihan2" value="E"></td>
+                                    <td>Isi Jawaban</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+
             </div>
 
         </section>
