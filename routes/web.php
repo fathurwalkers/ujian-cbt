@@ -60,3 +60,6 @@ Route::post('/', 'UjianController@postindex_prosesujian')->name('post-index-pros
 Route::get('/persiapan/{peserta_id}', 'UjianController@persiapan_prosesujian')->name('persiapan-proses-ujian');
 Route::get('/ajax-timestamp', 'UjianController@ajax_timestamp')->name('ajax-timestamp');
 Route::get('/ajax-datestamp', 'UjianController@ajax_datestamp')->name('ajax-datestamp');
+
+// Soal 
+Route::get('/soal', 'UjianController@soal_index')->name('soal-index');
