@@ -123,9 +123,6 @@ class UjianController extends Controller
                 ]);
                 $pesertaujian->pesertaujian_peserta()->associate($peserta_match->id);
                 $pesertaujian->pesertaujian_nomorujian()->associate($nomorujian_match->id);
-                // $pesertaujian->$pesertaujian->save();
-                // $session_nomorujian = session(['nomorujian' => $nomorujian_match]);
-                // $session_peserta = session(['peserta' => $peserta_match]);
                 return redirect()->route('persiapan-proses-ujian', [
                     'peserta_id' => $peserta_match->id
                 ]);
