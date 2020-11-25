@@ -45,6 +45,9 @@ Route::prefix('/dashboard')->group(function () {
 
     // LAPORAN UJIAN 
     Route::get('/laporan-ujian', 'UjianController@laporanujian')->name('laporan-ujian');
+
+    // RELASI NOMORUJIAN DAN PESERTA 
+    Route::get('/relasi-nomorujian-peserta', 'UjianController@relasi_nomorujian_peserta')->name('relasi-nomorujian-peserta');
 });
 
 // Login & Logout Route 

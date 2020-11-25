@@ -12,7 +12,7 @@ class Nomorujian extends Model
 
     protected $fillable = ['nomorujian'];
 
-    public function nomorujian_pesertaujian()
+    public function pesertaujian()
     {
         return $this->hasOne('App\PesertaUjian');
     }

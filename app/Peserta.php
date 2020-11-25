@@ -18,7 +18,7 @@ class Peserta extends Model
         'updated_at'
     ];
 
-    public function peserta_pesertaujian()
+    public function pesertaujian()
     {
         return $this->hasOne('App\PesertaUjian');
     }

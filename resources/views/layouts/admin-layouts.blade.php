@@ -121,7 +121,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="relasi_nomor_peserta.php"><i class="fa fa-circle-o"></i> Nomor Ujian - Peserta</a></li>
+              <li><a href="{{ route('relasi-nomorujian-peserta') }}"><i class="fa fa-circle-o"></i> Nomor Ujian -
+                  Peserta</a></li>
               <li><a href="relasi_nomor_antrian.php"><i class="fa fa-circle-o"></i> Nomor Ujian - Antrian</a></li>
             </ul>
           </li>

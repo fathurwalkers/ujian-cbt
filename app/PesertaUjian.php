@@ -16,12 +16,12 @@ class PesertaUjian extends Model
         'updated_at'
     ];
 
-    public function pesertaujian_peserta()
+    public function peserta()
     {
         return $this->belongsTo('App\Peserta');
     }
 
-    public function pesertaujian_nomorujian()
+    public function nomorujian()
     {
         return $this->belongsTo('App\Nomorujian');
     }

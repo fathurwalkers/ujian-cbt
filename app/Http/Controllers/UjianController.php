@@ -105,40 +105,12 @@ class UjianController extends Controller
     {
         $nomorujian_match = Nomorujian::where('nomorujian', $request->nomorujian)->first();
         $peserta_match = Peserta::where('peserta_nip', $request->peserta_nip)->first();
-        $peserta_ujian_match = PesertaUjian::where('nomorujian_id', $nomorujian_match->id && 'peserta_id', $peserta_match->id)->first();
-
-        // Mulai 
-        // if ($peserta_ujian_match) {
-        //     return redirect('/');
-        // }
-        // if ($nomorujian_match) {
-        //     if ($peserta_match) {
-        //         $pesertaujian = PesertaUjian::create([
-        //             'nomorujian_id' => $nomorujian_match->id,
-        //             'peserta_id' => $peserta_match->id,
-        //             'tanggal_masuk' => now(),
-        //             'waktu_masuk' => now(),
-        //             'created_at' => now(),
-        //             'updated_at' => now()
-        //         ]);
-        //         $pesertaujian->pesertaujian_peserta()->associate($peserta_match->id);
-        //         $pesertaujian->pesertaujian_nomorujian()->associate($nomorujian_match->id);
-        //         return redirect()->route('persiapan-proses-ujian', [
-        //             'peserta_id' => $peserta_match->id
-        //         ]);
-        //     }
-        // }
-        // return back()->with('status_error', 'Nomor Ujian / NIP sudah dipakai atau tidak ada')->withInput();
-        // Akhir 
-
-        if ($peserta_ujian_match) {
-            return back();
-            dd($peserta_ujian_match);
-        } else {
-            if ($nomorujian_match) {
-                return back()->with('status_error', 'Nomor Ujian / NIP sudah dipakai atau tidak ada')->withInput();
-            } else {
-                if ($peserta_match) {
+        if ($nomorujian_match) {
+            if ($peserta_match) {
+                $peserta_ujian_match = PesertaUjian::where('nomorujian_id', $nomorujian_match->id)->where('peserta_id', $peserta_match->id)->first();
+                if ($peserta_ujian_match) {
+                    return redirect('/');
+                } else {
                     $pesertaujian = PesertaUjian::create([
                         'nomorujian_id' => $nomorujian_match->id,
                         'peserta_id' => $peserta_match->id,
@@ -147,15 +119,15 @@ class UjianController extends Controller
                         'created_at' => now(),
                         'updated_at' => now()
                     ]);
-                    $pesertaujian->pesertaujian_peserta()->associate($peserta_match->id);
-                    $pesertaujian->pesertaujian_nomorujian()->associate($nomorujian_match->id);
+                    $pesertaujian->peserta()->associate($peserta_match->id);
+                    $pesertaujian->nomorujian()->associate($nomorujian_match->id);
                     return redirect()->route('persiapan-proses-ujian', [
                         'peserta_id' => $peserta_match->id
                     ]);
                 }
             }
+            return back()->with('status_error', 'Nomor Ujian / NIP sudah dipakai atau tidak ada')->withInput();
         }
-        // return redirect('/');
     }
 
     public function persiapan_prosesujian($peserta_id)
@@ -176,5 +148,13 @@ class UjianController extends Controller
     public function soal_index()
     {
         return view('prosesujian.soal');
+    }
+
+    public function relasi_nomorujian_peserta()
+    {
+        $peserta_ujian = PesertaUjian::all();
+        return view('dashboard.relasi-nomorujian-peserta.relasi-nomor-peserta', [
+            'peserta_ujian' => $peserta_ujian
+        ]);
     }
 }
