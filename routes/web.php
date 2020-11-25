@@ -14,7 +14,12 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/detail-bank-soal/{idsoal}', 'BanksoalController@detail_banksoal')->middleware('status_login')->name('detail-bank-soal');
 
     // Master Assesor 
-    Route::get('/master-assesor', 'DashboardController@master_assesor')->middleware('status_login')->name('master-assesor');
+    Route::get('/master-assesor', 'AssesorController@master_assesor')->middleware('status_login')->name('master-assesor');
+    Route::get('/tambah-assesor', 'AssesorController@tambah_assesor')->middleware('status_login')->name('tambah-assesor');
+    Route::post('/post-tambah-assesor', 'AssesorController@posttambah_assesor')->middleware('status_login')->name('post-tambah-assesor');
+    Route::get('/edit-assesor/{idassesor}', 'AssesorController@edit_assesor')->middleware('status_login')->name('edit-assesor');
+    Route::post('/update-assesor/{idassesor}', 'AssesorController@update_assesor')->middleware('status_login')->name('update-assesor');
+    Route::get('/delete-assesor/{idassesor}', 'AssesorController@delete_assesor')->middleware('status_login')->name('delete-assesor');
 
     // Master Peserta 
     Route::get('/master-peserta', 'PesertaController@master_peserta')->middleware('status_login')->name('master-peserta');
@@ -34,9 +39,9 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/delete-nomor-ujian/{idnomorujian}', 'UjianController@delete_nomorujian')->middleware('status_login')->name('delete-nomor-ujian');
 
     // Jadwal Ujian 
-    Route::get('/jadwal-ujian', 'UjianController@index_jadwalujian')->name('jadwal-ujian');
-    Route::get('/tambah-jadwal-ujian', 'UjianController@tambah_jadwalujian')->name('tambah-jadwal-ujian');
-    Route::post('/tambah-jadwal-ujian', 'UjianController@posttambah_jadwalujian')->name('post-tambah-jadwalujian');
+    Route::get('/jadwal-ujian', 'UjianController@index_jadwalujian')->middleware('status_login')->name('jadwal-ujian');
+    Route::get('/tambah-jadwal-ujian', 'UjianController@tambah_jadwalujian')->middleware('status_login')->name('tambah-jadwal-ujian');
+    Route::post('/tambah-jadwal-ujian', 'UjianController@posttambah_jadwalujian')->middleware('status_login')->name('post-tambah-jadwalujian');
 
     // LAPORAN UJIAN 
     Route::get('/laporan-ujian', 'UjianController@laporanujian')->name('laporan-ujian');

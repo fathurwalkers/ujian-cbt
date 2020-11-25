@@ -49,9 +49,4 @@ class DashboardController extends Controller
     {
         //
     }
-
-    public function master_assesor()
-    {
-        return view('dashboard.assesor.master-assesor');
-    }
 }
