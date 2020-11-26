@@ -34,6 +34,9 @@
                     {{-- <input name="nomorujian_id" type="hidden" value="{{ $nomorujian->id }}"> --}}
                     <input name="pesertaujian_id" type="hidden" value="{{ $pesertaujian->id }}">
 
+                    @php
+                    $x = 1;
+                    @endphp
                     @foreach ($banksoal as $soal)
                     {{-- <form action="" method="POST"> --}}
                     {{-- <input name="banksoal_id[{{ $loop->iteration }}]" type="hidden" value="{{ $soal->id }}"> --}}
@@ -51,8 +54,8 @@
                                 </div>
                             </div>
                             <div class="box-body">
-                                <input type="hidden" name="soal_id" value="{{ $soal->id }}"><input type="hidden"
-                                    name="rg_1" id="rg_1" value="N">
+                                <input type="hidden" name="soal_id{{ $x++ }}" value="{{ $soal->id }}"><input
+                                    type="hidden" name="rg_1" id="rg_1" value="N">
                                 <div class="step" id="widget_1">
                                     <div class="text-center">
                                         <div class="w-25"></div>
@@ -62,33 +65,32 @@
                                 <table border="0">
                                     <tr>
                                         <td style="width:2rem;">A.</td>
-                                        <td style="width:2rem;"><input type="radio"
-                                                name="soal_opsi[]{{ $loop->iteration }}"
+                                        <td style="width:2rem;"><input type="radio" name="soal_opsi[]{{ $x++ }}"
                                                 value="{{ $soal->soal_opsi1 }}">
                                         </td>
                                         <td>{!! $soal->soal_opsi1 !!}</td>
                                     </tr>
                                     <tr>
                                         <td>B.</td>
-                                        <td><input type="radio" name="soal_opsi[]{{ $loop->iteration }}"
+                                        <td><input type="radio" name="soal_opsi[]{{ $x++ }}"
                                                 value="{{ $soal->soal_opsi2 }}"></td>
                                         <td>{!! $soal->soal_opsi2 !!}</td>
                                     </tr>
                                     <tr>
                                         <td>C.</td>
-                                        <td><input type="radio" name="soal_opsi[]{{ $loop->iteration }}"
+                                        <td><input type="radio" name="soal_opsi[]{{ $x++ }}"
                                                 value="{{ $soal->soal_opsi3 }}"></td>
                                         <td>{!! $soal->soal_opsi3 !!}</td>
                                     </tr>
                                     <tr>
                                         <td>D.</td>
-                                        <td><input type="radio" name="soal_opsi[]{{ $loop->iteration }}"
+                                        <td><input type="radio" name="soal_opsi[]{{ $x++ }}"
                                                 value="{{ $soal->soal_opsi4 }}"></td>
                                         <td>{!! $soal->soal_opsi4 !!}</td>
                                     </tr>
                                     <tr>
                                         <td>E.</td>
-                                        <td><input type="radio" name="soal_opsi[]{{ $loop->iteration }}"
+                                        <td><input type="radio" name="soal_opsi[]{{ $x++ }}"
                                                 value="{{ $soal->soal_opsi5 }}"></td>
                                         <td>{!! $soal->soal_opsi5 !!}</td>
                                     </tr>

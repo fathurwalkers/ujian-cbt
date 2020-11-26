@@ -193,22 +193,19 @@ class UjianController extends Controller
 
         $peserta = Peserta::where('id', $peserta_id)->first();
         $pesertaujian = PesertaUjian::where('id', $pesertaujian_id)->first();
-        $banksoal = Banksoal::where('id', $request->banksoal_id)->first();
 
-        // $id_peserta = $peserta->id;
-        // $id_banksoal = $banksoal->id;
         $id_jadwalujian = 1;
-        $skor = $banksoal->soal_bobot;
         $soalopsi = count($request->soal_opsi);
-        // $banksoalid = count($request->banksoal_id);
-        // $banksoal_implode = implode(':', $request->banksoal_id);
-        // dd($soalopsi);
-        for ($x = 0; $x < $soalopsi; $x++) {
+
+        for ($x = 1; $x < $soalopsi; $x++) {
+            $soalid = $request->soal_id . $x++;
+            $banksoal = Banksoal::where('id', $soalid)->first();
+            $skor = 1;
             $hasil_ujian = HasilUjian::create([
                 'pesertaujian_id' => $pesertaujian->id,
                 'jadwalujian_id' => $id_jadwalujian,
-                'banksoal_id' => $request->soal_id . $x,
-                'hasil_isianjawaban' => $x,
+                'banksoal_id' => $request->soal_id . $x++,
+                'hasil_isianjawaban' => $request->soal_opsi . $x,
                 'hasil_tanggalmulai' => now(),
                 'hasil_waktumulai' => now(),
                 'hasil_waktuselesai' => now(),
@@ -216,21 +213,8 @@ class UjianController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
-
-            // dump($hasil_ujian);
             $hasil_ujian->save();
         }
         return redirect()->route('index-proses-ujian');
-
-        // 'pesertaujian_id',
-        // 'jadwalujian_id',
-        // 'banksoal_id',
-        // 'hasil_isianjawaban',
-        // 'hasil_tanggalmulai',
-        // 'hasil_waktumulai',
-        // 'hasil_waktuselesai',
-        // 'hasil_skorujian',
-        // 'created_at',
-        // 'updated_at'
     }
 }
